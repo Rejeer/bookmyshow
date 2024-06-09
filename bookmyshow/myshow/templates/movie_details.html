@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body{
+        background-color: black;
+    }
+    .movie-container {
+      display: flex;
+      flex-wrap: wrap;
+      float:left;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px;
+  }
+  
+  .movie-card {
+      background-color: rgb(240, 230, 230);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 350px;
+      transition: transform 0.2s;
+  }
+  
+  .movie-card:hover {
+      transform: scale(1.05);
+  }
+  
+  .movie-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+  }
+  
+  .movie-info {
+      padding: 15px;
+  }
+  
+  .movie-info h3 {
+      font-size: 18px;
+      margin: 0;
+  }
+  
+  .movie-info p {
+      margin: 5px 0;
+      color: #555;
+  }
+  
+  .rating {
+      color: #e74c3c;
+      font-weight: bold;
+  }
+  
+  .rating span {
+      color: #999;
+      font-weight: normal;
+  }
+</style>
+    </head>
+<body>
+  
+    <div class="movie-container">
+        <div class="movie-card">
+            {% if show.image %} 
+            <img src="{{show.image.url}}" alt="Loading..........">
+            {% endif %}
+            <div class="movie-info">
+                <h3>{{show.movies}}</h3>
+                <h5>{{show.actor}}</h5>
+                <h5>{{show.director}}</h5>
+                <p>Genres: {{show.genres}}</p>
+                <p class="rating">8.5/10 <span>9.9K Votes</span></p>
+            <a href="{% url 'movie_edit' show.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'delete' show.id %}" class="btn btn-danger">Delete</a>
+          </div>
+        </div>
+      </div>
+    
+{% endblock %}
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}

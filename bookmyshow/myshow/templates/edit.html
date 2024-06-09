@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  label{
+    color: white;
+  }
+</style>
+    <h1 style="color:white; text-align: center;">EDIT MOVIES</h1>
+    <hr>
+
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="text " >movies</label><br>
+            
+            <input type="text"name="movies" class="form-control" id="text" placeholder="Movie" value="{{show.movies}}"><br>
+          </div>
+          
+            </label>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="text " >Actor</label><br>
+              
+                <input type="text"name="actor" class="form-control" id="text" placeholder="Actor" value="{{show.actor}}"><br>
+            </div>
+            
+              </label>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="text " >Director</label><br>
+              
+                    <input type="text"name="director" class="form-control" id="text" placeholder="Director" value="{{show.director}}"><br>
+                </div>
+                
+                  </label>
+                </div>
+                <select style="color: white;" name="gene">
+                  {% for c in gen %}
+                  <option value="{{c.0}}" {% if show.genres == c.0 %}selected{% endif %}>{{c.1}}</option>
+                  {% endfor %}
+                </select><br><br>
+
+ 
+
+              </div>
+                    <label for="image">Image</label><br>
+                    {% if show.image %}
+                    <h6 style="color: white;"> Currently:{{show.image.url}}</h6>
+                    {% endif %}
+                    <input type="file" name="image" accept="image/*">
+                      
+                      
+        <button type="submit" class="btn btn-primary" value="edit" >submit</button>
+        <hr>
+      </form>
+{% endblock %}
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form  method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<section class="vh-100" style="background-color: #2779e2;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-9">
+  
+          
+  
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+  
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+  
+                  <h6 class="mb-0">Full name</h6>
+                  <input type="text" name="fullname" class="form-control" id="text" placeholder="Full Name"><br>
+  
+                </div>
+                
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+  
+              <div class="row align-items-center py-3">
+                
+                <div class="col-md-9 pe-5">
+  
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+  
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+  
+                  <h6 class="mb-0">Bio</h6>
+                  <input type="text" name="bio" class="form-control" id="text" placeholder="Bio"><br>
+  
+                </div>
+                <div class="col-md-3 ps-5">
+  
+                    <h6 class="mb-0">Location</h6>
+                    <input type="text" name="location" class="form-control" id="text" placeholder="Location"><br>
+                <div class="col-md-9 pe-5">
+  
+                  
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+  
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+  
+                  <h6 class="mb-0">Image</h6>
+                  <input type="file" name="image" accept="image/*"><br><br>
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+  
+              <div class="px-5 py-4">
+                <button type="submit" value='createuser' data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg">Save</button>
+              </div>
+  
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

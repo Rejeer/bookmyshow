@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <style>
+    .topnav {
+      background-color: white;
+      overflow: hidden;
+      display: flex;
+      justify-content: right;
+      padding-right: 10px;
+
+
+
+    }
+
+    body{
+      background-color: black;
+    }
+
+    .icons {
+      margin-top: 13px;
+
+    }
+
+    .topnav a {
+      float: left;
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+
+
+    }
+
+    .topnav a:hover {
+      background-color: white;
+      color: black;
+    }
+
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    .topnav .new {
+      background-color: orange;
+      color: white;
+      padding: 0px;
+      font-size: 10px;
+    }
+
+    .logo {
+      margin-right: 630px;
+      float: right;
+    }
+
+    .row {
+      margin-left: 100px;
+      float: left;
+    }
+
+    .container {
+      display: flex;
+      float: left;
+      padding: 30px;
+      margin-top: 40px;
+      margin-right: 100px;
+    }
+
+    .img1 {
+      border: 6px solid;
+    }
+
+    .img2 {
+      border: 6px solid;
+    }
+
+    .img3 {
+      border: 6px solid;
+    }
+
+    .img4 {
+      border: 6px solid;
+    }
+
+    .img5 {
+      border: 6px solid;
+    }
+
+    section {
+      float: left;
+      margin-top: 125px;
+
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+
+
+    h1 {
+      font-size: 2em;
+      margin: 0;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    section {
+      margin-bottom: 20px;
+    }
+
+
+
+    #recommended-movies h2 {
+      margin-bottom: 10px;
+    }
+
+    #recommended-movies ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #recommended-movies li {
+      margin-bottom: 5px;
+    }
+
+    #recommended-movies a {
+      text-decoration: none;
+      color: #e83333;
+    }
+
+    .container {
+
+      background-image: url('https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGhlYXRlciUyMHNlYXRzfGVufDB8fDB8fHww');
+      margin-top: -70px;
+      height: 465px;
+      width: 1124px;
+      background-size: cover;
+      background-position: center;
+    }
+  
+  
+  .movie-container {
+      display: flex;
+      flex-wrap: wrap;
+      float:left;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px;
+  }
+  
+  .movie-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 220px;
+      transition: transform 0.2s;
+  }
+  
+  .movie-card:hover {
+      transform: scale(1.05);
+  }
+  
+  .movie-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+  }
+  
+  .movie-info {
+      padding: 15px;
+  }
+  
+  .movie-info h3 {
+      font-size: 18px;
+      margin: 0;
+  }
+  
+  .movie-info p {
+      margin: 5px 0;
+      color: #555;
+  }
+  
+  .rating {
+      color: #e74c3c;
+      font-weight: bold;
+  }
+  
+  .rating span {
+      color: #999;
+      font-weight: normal;
+  }
+  </style>
+
+
+
+
+
+
+  <section>
+  
+
+  
+{% for i in Show %}
+<div class="movie-container">
+    <div class="movie-card">
+      {% if i.image %}
+      <img src="{{i.image.url}}" alt="Loding...">
+      {% endif %}
+      <div class="movie-info">
+          <h3>{{i.movies}}</h3>
+          <h5>{{i.actor}}</h5>
+          <h5>{{i.director}}</h5>
+          <p>{{i.genres}}</p>
+          <p class="rating">8.5/10 <span>9.9K Votes</span></p>
+      <a href="{% url 'detail' i.id %}" class="btn btn-primary">Book Now</a>
+    </div>
+  </div>
+</div>
+ {% endfor %}
+
+
+
+
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="./bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+
+{% endblock %}
+
+{% for message in messages %}
+    {% if message.tags == "error" %}
+        <span style="color: red;">{{message}}</span>
+    {% elif message.tags == "success" %}
+        <span style="color: green;">{{message}}</span>
+    {% else %}
+    <span style="color: blue;">{{message}}</span>
+    {% endif %}
+{% endfor %}
